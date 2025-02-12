@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useEffect, useState} from "react"
+import {useEffect, useState, useMemo} from "react"
 function App() {
   const [data, setData] = useState([]);
   const [word, setWord] = useState("");
@@ -14,18 +14,19 @@ function App() {
   } 
   const debounce = (fn ) => {
     let time
-    return (args)=>{
+    return (...args)=>{
       clearTimeout(time)
       time = setTimeout(()=>{
-        fn.call(this, ...args)
+        fn(...args)
       }, 2000)
     }
   }
-  const wordS = debounce(apiFetch)
+  const wordS = useMemo(()=>debounce(apiFetch),[apiFetch])
   useEffect(()=>{
-    let time  ;
+    
     wordS(word) 
-    console.log(word)
+    
+    console.log(word, "dcc")
     //console.log(word)
     // return()=>{
     //   clearTimeout(time)
@@ -42,12 +43,12 @@ function App() {
         Search bar
       </h1>
       <div className='input-search-bar'>
-        <input onChange={(e)=>{setWord(e.target.value)}} className="search-input"/>
+        <input value={word} onChange={(e)=>{setWord((prev)=>e.target.value)}} className="search-input"/>
         <div className='search-suggestion-box'>
       {data?.map((some, index)=>{
         console.log(some)
         return(
-          <div className=''>{some?.name }
+          <div onClick={()=>{setWord(some?.name)}} className=''>{some?.name }
           </div>
         )
       })}
