@@ -1,7 +1,10 @@
 # Autocomplete
 
 ## Overview
-Autocomplete is a web application that provides predictive text suggestions as users type into an input field. This project is deployed at [autocomplete-o53dnskg3-prasha111s-projects.vercel.app](https://autocomplete-o53dnskg3-prasha111s-projects.vercel.app).
+Autocomplete is a web application that provides predictive text suggestions as users type into an input field.
+ 
+##live url
+https://autocomplete-o53dnskg3-prasha111s-projects.vercel.app
 
 ## Features
 - Dynamic text suggestions as users type
